@@ -1,0 +1,104 @@
+<app-menu></app-menu>
+
+<mat-sidenav-container>
+  <!-- Sidenav del carrito -->
+  <mat-sidenav #carritoSidenav mode="side" position="end" (opened)="isSidenavOpen = true" (closed)="isSidenavOpen = false">
+    <h2>Carrito</h2>
+    <div *ngFor="let producto of carrito" class="carrito-item">
+      <div class="producto-info">
+        <span>{{ producto.nombre }}</span>
+        <span>{{ producto.precio | currency }}</span>
+      </div>
+      <button mat-icon-button (click)="eliminarDelCarrito(producto)" class="eliminar-btn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <h3>Total: {{ totalPrecio | currency }}</h3> <!-- Mostrar el total aquí -->
+
+    
+    
+    <mat-label>Nombre</mat-label>
+    <br>
+    <input type="text" [(ngModel)]="nombreCliente" placeholder="Tu nombre" (input)="isGenerarFacturaDisabled()">
+    <br>
+    
+    <mat-label>Celular</mat-label>
+    <br>
+    <input type="tel" [(ngModel)]="celularCliente" placeholder="Tu número de celular" (input)="isGenerarFacturaDisabled()">
+    <br>
+    
+    <mat-label>Mensaje</mat-label>
+    <br>
+    <textarea [(ngModel)]="mensajeCliente" placeholder="Mensaje" (input)="isGenerarFacturaDisabled()"></textarea>
+    <br>
+
+        <button mat-raised-button color="primary" 
+        (click)="generarFactura()" 
+        [disabled]="isGenerarFacturaDisabled()">
+  Generar Factura
+</button>  
+  </mat-sidenav>
+
+  <!-- Contenido principal de la tienda -->
+  <mat-toolbar color="primary">
+    <span class="spacer"></span>
+    <button mat-button (click)="mostrarTodosLosProductos()" style="color:black">Variedad</button>
+    <button mat-button [matMenuTriggerFor]="aboveMenu" style="color:black">Mujer</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+        <button mat-menu-item (click)="filtrarProductos('Mujer', 'Zapatos')">Zapatos</button>
+        <button mat-menu-item (click)="filtrarProductos('Mujer', 'Pantalon')">Pantalon</button>
+        <button mat-menu-item (click)="filtrarProductos('Mujer', 'Camisas')">Camisas</button>
+        <button mat-menu-item (click)="filtrarProductos('Mujer', 'Otros')">Otros</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="belowMenu" style="color:black">Hombre</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item (click)="filtrarProductos('Hombre', 'Zapatos')">Zapatos</button>
+        <button mat-menu-item (click)="filtrarProductos('Hombre', 'Pantalon')">Pantalon</button>
+        <button mat-menu-item (click)="filtrarProductos('Hombre', 'Camisas')">Camisas</button>
+        <button mat-menu-item (click)="filtrarProductos('Hombre', 'Otros')">Otros</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="beforeMenu" style="color:black">Niño</button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="filtrarProductos('Niño', 'Zapatos')">Zapatos</button>
+        <button mat-menu-item (click)="filtrarProductos('Niño', 'Pantalon')">Pantalon</button>
+        <button mat-menu-item (click)="filtrarProductos('Niño', 'Camisas')">Camisas</button>
+        <button mat-menu-item (click)="filtrarProductos('Niño', 'Otros')">Otros</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="afterMenu" style="color:black">Huerta</button>
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)="filtrarProductos('Huerta', 'Frutas')">Frutas</button>
+        <button mat-menu-item (click)="filtrarProductos('Huerta', 'Verduras')">Verduras</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="emprendimientoMenu" style="color:black">Emprendimientos</button>
+    <mat-menu #emprendimientoMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)="filtrarProductos('Emprendimientos', 'Otros')">Otros</button>
+    </mat-menu>
+    <!-- Botón flotante del carrito -->
+    <button mat-fab color="accent" class="carrito-fab" (click)="abrirCarrito()" [ngStyle]="{'margin-right': isSidenavOpen ? '300px' : '20px'}">
+        <mat-icon>shopping_cart</mat-icon>
+        <span *ngIf="carrito.length > 0" class="cart-count">{{ carrito.length }}</span>
+      </button>
+  </mat-toolbar>
+
+  <div class="product-container">
+    <mat-card *ngFor="let producto of productosFiltrados" class="product-card">
+      <mat-card-header>
+        <mat-card-title>{{ producto.nombre }}</mat-card-title>
+        <mat-card-subtitle>{{ producto.tipo }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="producto.imagenUrl" alt="{{ producto.nombre }}" class="product-card-img">
+
+      <mat-card-content>
+        <p>{{ producto.descripcion }}</p>
+        <p>Precio: {{ producto.precio | currency }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</mat-sidenav-container>

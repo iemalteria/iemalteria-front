@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Conócenos</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="!(asyncTabs | async); else tabContent">
+      Cargando pestañas...
+    </div>
+
+    <ng-template #tabContent>
+      <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+        <mat-tab *ngFor="let tab of asyncTabs | async; let i = index">
+          <ng-template mat-tab-label>{{ tab.label }}</ng-template>
+        </mat-tab>
+      </mat-tab-group>
+
+      <ng-container [ngSwitch]="selectedTabIndex">
+        <!-- Mostrar empleados de Sede Principal Malteria -->
+        <div *ngSwitchCase="0">
+          <mat-card *ngFor="let empleado of empleadosSedeMalteria">
+            <mat-card-header>
+              <mat-card-title>{{ empleado.nombre }}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="empleado.imagenUrl" alt="{{ empleado.nombre }}" (click)="mostrarVideo(empleado.videoUrl)">
+            <mat-card-content>
+              <p>{{ empleado.descripcion }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Mostrar empleados de Sede La Colonia -->
+        <div *ngSwitchCase="1">
+          <mat-card *ngFor="let empleado of empleadosSedeColonia">
+            <mat-card-header>
+              <mat-card-title>{{ empleado.nombre }}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="empleado.imagenUrl" alt="{{ empleado.nombre }}" (click)="mostrarVideo(empleado.videoUrl)">
+            <mat-card-content>
+              <p>{{ empleado.descripcion }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Mostrar empleados de Sede B Porvenir -->
+        <div *ngSwitchCase="2">
+          <mat-card *ngFor="let empleado of empleadosSedePorvenir">
+            <mat-card-header>
+              <mat-card-title>{{ empleado.nombre }}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="empleado.imagenUrl" alt="{{ empleado.nombre }}" (click)="mostrarVideo(empleado.videoUrl)">
+            <mat-card-content>
+              <p>{{ empleado.descripcion }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div *ngSwitchDefault>
+          Selecciona una pestaña para ver su contenido.
+        </div>
+      </ng-container>
+    </ng-template>
+  </mat-card-content>
+</mat-card>
+

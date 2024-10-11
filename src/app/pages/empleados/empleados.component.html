@@ -1,0 +1,64 @@
+<app-menu></app-menu>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Lista de Empleados</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Buscar empleado" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="listaEmpleados" matSort class="mat-elevation-z8 demo-table">
+
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td mat-cell *matCellDef="let row" (click)="onRowClick(row)">
+            {{row.nombre}}
+          </td>
+        </ng-container>
+
+        <!-- Imagen URL Column -->
+        <ng-container matColumnDef="Imagen URL">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen URL </th>
+          <td mat-cell *matCellDef="let row">
+            <img *ngIf="row.imagenUrl" [src]="row.imagenUrl" alt="{{row.nombre}}" style="width: 100px; height: auto;">
+          </td>
+        </ng-container>
+
+        <!-- Descripción Column -->
+        <ng-container matColumnDef="Descripción">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.descripcion}}
+          </td>
+        </ng-container>
+
+        <!-- Sede Column -->
+        <ng-container matColumnDef="Sede">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.sede}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No se encuentra el valor del filtro: "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of empleados"></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Botón para añadir empleado -->
+<div class="button-container">
+  <button mat-raised-button color="primary" (click)="crearEmpleado()" class="añadir-button">Añadir Empleado</button>
+</div>

@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+<mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Detalles del Texto Web</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>Sección</mat-label>
+          <input matInput formControlName="seccion" />
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Título</mat-label>
+          <input matInput formControlName="titulo" />
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Texto</mat-label>
+          <textarea matInput formControlName="texto" rows="5"></textarea>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Imagen URL</mat-label>
+          <input matInput formControlName="imagenUrl" />
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Texto Alternativo</mat-label>
+          <input matInput formControlName="altText" />
+        </mat-form-field>
+  
+        <div class="button-group">
+          <button mat-raised-button color="primary" type="submit">Guardar</button>
+          <button mat-button (click)="router.navigate(['administrar'])">Cancelar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

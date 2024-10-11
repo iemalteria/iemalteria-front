@@ -1,0 +1,17 @@
+/* Ajustes básicos de estilo */
+mat-card {
+  margin: 20px;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+button {
+  margin-right: 8px;
+}

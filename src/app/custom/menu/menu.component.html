@@ -1,0 +1,30 @@
+<mat-toolbar class="custom-toolbar">
+  <img src="https://i.postimg.cc/tCWhTZwp/logo.png" alt="Logo" class="logo">
+  <span class="username" *ngIf="nombreAutor">{{ nombreAutor }}</span>
+  <div class="menu-items">
+    <ng-container *ngFor="let route of routes; let i = index">
+      <ng-container *ngIf="i < 2">
+        <button mat-button *ngIf="route.requiresToken === hasToken || route.general" (click)="navigateTo(route.path)">
+          <mat-icon>{{ route.icon }}</mat-icon>
+          <span>{{ route.name }}</span>
+        </button>
+      </ng-container>
+    </ng-container>
+
+    <!-- Menú desplegable para más ítems -->
+    <button mat-button [matMenuTriggerFor]="moreMenu">
+      <mat-icon>more_vert</mat-icon>
+      Más
+    </button>
+    <mat-menu #moreMenu="matMenu">
+      <ng-container *ngFor="let route of routes; let i = index">
+        <ng-container *ngIf="i >= 2">
+          <button mat-menu-item *ngIf="route.requiresToken === hasToken || route.general" (click)="navigateTo(route.path)">
+            <mat-icon>{{ route.icon }}</mat-icon>
+            <span>{{ route.name }}</span>
+          </button>
+        </ng-container>
+      </ng-container>
+    </mat-menu>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,21 @@
+<app-menu></app-menu>
+<mat-card appearance="outlined" class="create-blog-card">
+  <form #blogForm="ngForm" (ngSubmit)="onSubmit(blogForm)" class="blog-form">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Título</mat-label>
+      <input matInput name="titulo" [(ngModel)]="titulo" required>
+      <mat-error *ngIf="blogForm.controls['titulo']?.invalid && blogForm.controls['titulo']?.touched">
+        El título es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <quill-editor name="contenido" [(ngModel)]="contenido" id="txtContenido" class="quill-editor"></quill-editor>
+    <mat-error *ngIf="blogForm.controls['contenido']?.invalid && blogForm.controls['contenido']?.touched">
+      El contenido es obligatorio
+    </mat-error>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="blogForm.invalid" class="submit-button">
+      Crear Blog
+    </button>
+  </form>
+</mat-card>

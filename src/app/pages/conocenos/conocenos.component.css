@@ -1,0 +1,63 @@
+/* Contenedor para el mat-card para alinear y posicionar los elementos correctamente */
+mat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px;
+  position: relative; /* Necesario para posicionar el icono sobre la imagen */
+}
+
+/* Imagen circular que se ajusta a los cards */
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* Ajuste uniforme de la imagen sin distorsión */
+  border-radius: 50%; /* Hace la imagen circular */
+  position: relative;
+  transition: transform 0.3s ease; /* Suaviza la animación cuando se pasa el mouse */
+}
+
+/* Efecto de agrandar la imagen cuando el mouse está sobre ella */
+img:hover {
+  transform: scale(1.05); /* Aumenta el tamaño de la imagen al pasar el mouse */
+}
+
+/* Icono de reproducir que aparece al pasar el mouse */
+img::after {
+  content: '\25BA'; /* Unicode para el ícono de reproducir (triángulo) */
+  font-size: 4rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2; /* Asegura que el ícono esté sobre la imagen */
+  pointer-events: none; /* Permite hacer clic en la imagen sin interferencia del ícono */
+}
+
+/* Al pasar el mouse sobre la imagen, el ícono aparece */
+img:hover::after {
+  opacity: 0.8; /* Hace que el ícono sea visible */
+}
+
+/* Controla el estilo del contenido de las tarjetas */
+mat-card-content {
+  padding: 16px;
+  text-align: center; /* Centra el texto dentro del contenido */
+}
+
+/* Título de la tarjeta */
+mat-card-title {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  text-align: center; /* Centra el título */
+}
+
+/* Asegúrate de que el texto en el mat-card-content haga saltos de línea */
+p {
+  white-space: pre-wrap; /* Conserva los saltos de línea y asegura el ajuste de texto */
+  word-wrap: break-word; /* Ajusta las palabras largas que no caben en la línea */
+  margin: 0; /* Elimina márgenes adicionales si es necesario */
+}

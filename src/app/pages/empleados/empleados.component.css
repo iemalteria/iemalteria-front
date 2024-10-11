@@ -1,0 +1,22 @@
+/* Estilo para el contenedor del botón */
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+    padding: 16px; /* Espaciado alrededor del botón */
+  }
+  
+  /* Estilo para el botón de añadir empleado */
+  .añadir-button {
+    background-color: #007bff; /* Color de fondo del botón (puedes cambiarlo según el tema) */
+    color: #ffffff; /* Color del texto del botón */
+    font-size: 16px; /* Tamaño de fuente */
+    padding: 8px 16px; /* Espaciado interno del botón */
+    margin-top: 16px; /* Espacio superior para separar del contenido */
+    border-radius: 4px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+  }
+  
+  .añadir-button:hover {
+    background-color: #0056b3; /* Color de fondo cuando se pasa el cursor por encima */
+  }
+  

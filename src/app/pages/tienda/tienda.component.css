@@ -1,0 +1,124 @@
+.spacer {
+  display: flex;
+  justify-content: center;
+}
+
+mat-toolbar {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Espacio uniforme entre columnas */
+  margin: 16px;
+}
+
+.product-card {
+  width: calc(25% - 32px); /* Ancho para 4 columnas, restando márgenes */
+  height: 400px; /* Mantener la altura fija */
+  margin: 16px; /* Margen uniforme */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s; /* Añadir transición para efectos visuales */
+}
+
+.product-card:hover {
+  transform: scale(1.05); /* Efecto hover */
+}
+
+.product-card img {
+  width: 100%; /* Para que ocupe todo el ancho de la tarjeta */
+  height: 200px; /* Establece una altura fija */
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+/* Asegúrate de que en pantallas pequeñas las tarjetas se ajusten */
+@media (max-width: 800px) {
+  .product-card {
+    width: calc(50% - 32px); /* 2 columnas en pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 500px) {
+  .product-card {
+    width: calc(100% - 32px); /* 1 columna en pantallas muy pequeñas */
+  }
+}
+
+.carrito-fab {
+  position: fixed; /* Mantiene el botón en una posición fija en la ventana */
+  bottom: 20px;    /* Distancia desde la parte inferior de la ventana */
+  right: 20px;     /* Distancia desde la parte derecha de la ventana */
+  z-index: 1000;   /* Asegura que el botón esté por encima de otros elementos */
+}
+
+.carrito-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.producto-info {
+  display: flex;
+  gap: 10px;
+}
+
+.eliminar-btn {
+  margin-left: 10px;
+  color: red;
+}
+
+.mat-sidenav {
+  z-index: 900; /* Asegúrate de que el z-index sea mayor que el del botón flotante */
+  
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px; /* Ajusta según sea necesario */
+  right: -5px; /* Ajusta según sea necesario */
+  background-color: red; /* Color de fondo del contador */
+  color: white; /* Color del texto */
+  border-radius: 50%; /* Hacer que el contador sea redondo */
+  padding: 2px 6px; /* Espaciado interno */
+  font-size: 12px; /* Tamaño del texto */
+}
+
+/* Estilos para los inputs */
+input[type="text"],
+input[type="tel"],
+textarea {
+  width: calc(50% - 50x); /* 1 columna en pantallas muy pequeñas */ /* Ocupa todo el ancho del contenedor */
+  padding: 10px; /* Espaciado interno */
+  margin: 10px 0; /* Margen superior e inferior */
+  border: 1px solid #ccc; /* Borde suave */
+  border-radius: 4px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: border-color 0.3s; /* Transición suave para el enfoque */
+}
+
+/* Estilo para los inputs al tener foco */
+input[type="text"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  border-color: #007BFF; /* Cambiar el color del borde en foco */
+  outline: none; /* Quitar el borde por defecto */
+}
+
+/* Estilos para el placeholder */
+input::placeholder,
+textarea::placeholder {
+  color: #aaa; /* Color del texto del placeholder */
+  opacity: 1; /* Asegurarse de que el placeholder sea opaco */
+}
+
+/* Estilo para el área de texto */
+textarea {
+  resize: vertical; /* Permitir cambiar el tamaño solo verticalmente */
+  min-height: 100px; /* Altura mínima */
+}

@@ -22,6 +22,10 @@ export class BlogService {
     return this.http.get<blog>(`${this.baseUrl}Blog/${id}`);
   }
 
+  obtenerBlogPorCategoriaId(id: number): Observable<responseBlog> {
+    return this.http.get<responseBlog>(`${this.baseUrl}Blog/PorCategoria/${id}`);
+  }
+
   // Método para crear un nuevo blog
   crearBlog(nuevoBlog: Omit<blog, 'id'>): Observable<blog> {
     return this.http.post<blog>(`${this.baseUrl}Blog/Crear`, nuevoBlog);

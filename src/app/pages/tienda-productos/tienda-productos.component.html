@@ -44,10 +44,17 @@
         </ng-container>
 
         <!-- Precio Column -->
-        <ng-container matColumnDef="Precio">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+        <ng-container matColumnDef="Precio Min">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio Min </th>
           <td mat-cell *matCellDef="let row">
             {{row.precio | currency}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Precio Max">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio Max</th>
+          <td mat-cell *matCellDef="let row">
+            {{row.precio2 | currency}}
           </td>
         </ng-container>
 

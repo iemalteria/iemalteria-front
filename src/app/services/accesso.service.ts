@@ -6,7 +6,7 @@ import { usuario } from '../interfaces/usuario';
 import { Observable } from 'rxjs';
 import { responseBlog } from '../interfaces/responseBlog';
 import { login } from '../interfaces/login';
-import { responseUsuario } from '../interfaces/responseUsuario';
+import { responseUsuario, responseUsuarios } from '../interfaces/responseUsuario';
 import { responseUsuarioToken } from '../interfaces/responseUsuarioToken';
 
 @Injectable({
@@ -36,5 +36,13 @@ export class AccessoService {
 
   obtenerInformacionUsuario(): Observable<responseUsuarioToken> {
     return this.http.get<responseUsuarioToken>(`${this.baseUrl}Usuarios/ObtenerInfoUsuario`);
+  }
+
+  obtenerTodosUsuarios(): Observable<responseUsuarios> {
+    return this.http.get<responseUsuarios>(`${this.baseUrl}Usuarios/ObtenerTodosUsuarios`);
+  }
+
+  editarUsuario(id: number, usuario: usuario): Observable<responseAcceso> {
+    return this.http.put<responseAcceso>(`${this.baseUrl}Usuarios/EditarUsuario?id=${id}`, usuario);
   }
 }

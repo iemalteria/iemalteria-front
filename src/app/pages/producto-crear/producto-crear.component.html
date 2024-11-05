@@ -18,18 +18,27 @@
         <mat-error *ngIf="imagenUrl?.hasError('required')">La imagen es requerida</mat-error>
       </mat-form-field>
 
+      <mat-slide-toggle matInput formControlName="activo"> Rango de precio</mat-slide-toggle>
       <mat-form-field appearance="fill">
-        <mat-label>Precio</mat-label>
+        <mat-label>Precio Minimo</mat-label>
         <input matInput formControlName="precio" type="number" min="0" step="0.01" placeholder="0.00">
         <mat-error *ngIf="precio?.hasError('required')">El precio es requerido</mat-error>
         <mat-error *ngIf="precio?.hasError('min')">El precio no puede ser negativo</mat-error>
       </mat-form-field>
 
+      <mat-form-field appearance="fill" *ngIf="productoForm.get('activo')?.value">
+        <mat-label>Precio Maximo</mat-label>
+        <input matInput formControlName="precio2" type="number" min="0" step="0.01" placeholder="0.00">
+        <mat-error *ngIf="precio2?.hasError('required')">El precio es requerido</mat-error>
+        <mat-error *ngIf="precio2?.hasError('min')">El precio no puede ser negativo</mat-error>
+      </mat-form-field>
+        
+       
       <mat-form-field appearance="fill">
         <mat-label>Descripción</mat-label>
-        <input matInput formControlName="descripcion" maxlength="70" (input)="updateCharacterCount()">
+        <input matInput formControlName="descripcion" maxlength="120" (input)="updateCharacterCount()">
         <mat-error *ngIf="descripcion?.hasError('required')">La descripción es requerida</mat-error>
-        <mat-hint>{{ characterCount }} / 70 </mat-hint>
+        <mat-hint>{{ characterCount }} / 120 </mat-hint>
     </mat-form-field>
 
       <mat-form-field appearance="fill">

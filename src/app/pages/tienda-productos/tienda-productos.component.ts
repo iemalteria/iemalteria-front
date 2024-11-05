@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
 export class TiendaProductosComponent implements AfterViewInit {
   private productosService = inject(ProductosService);
   public listaProductos: MatTableDataSource<Producto> = new MatTableDataSource<Producto>();
-  public displayedColumns: string[] = ['Id','Nombre', 'Imagen URL', 'Descripción', 'Precio'];
+  public displayedColumns: string[] = ['Id','Nombre', 'Imagen URL', 'Descripción', 'Precio Min', 'Precio Max'];
   private router = inject(Router);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

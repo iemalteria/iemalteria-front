@@ -28,7 +28,8 @@ export class RegistroComponent {
   public formRegistro: FormGroup = this.formBuild.group({
     correo:['',Validators.required],
     nombre:['',Validators.required],
-    clave: ['',Validators.required]
+    clave: ['',Validators.required],
+    rol: ['Usuario']
 
   })
 

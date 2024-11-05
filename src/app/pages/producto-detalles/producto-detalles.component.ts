@@ -11,11 +11,12 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ProductosService } from '../../services/productos.service';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-producto-detalles',
   standalone: true,
-  imports: [MenuComponent, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCardModule, CommonModule, MatButtonModule],
+  imports: [MenuComponent, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCardModule, CommonModule, MatButtonModule, MatSlideToggleModule],
   templateUrl: './producto-detalles.component.html',
   styleUrls: ['./producto-detalles.component.css']
 })
@@ -40,7 +41,9 @@ export class ProductoDetallesComponent implements OnInit {
       descripcion: ['', Validators.required],
       categoria: ['', Validators.required],
       tipo: ['', Validators.required],
-      precio: ['', [Validators.required, Validators.min(0)]]
+      precio: ['', [Validators.required, Validators.min(0)]],
+      precio2: [''],
+      activo: [true]
     });
 
     // Cargar datos del producto
@@ -56,7 +59,9 @@ export class ProductoDetallesComponent implements OnInit {
         descripcion: producto.descripcion,
         categoria: producto.categoria,
         tipo: producto.tipo,
-        precio: producto.precio
+        precio: producto.precio,
+        precio2:producto.precio2,
+        activo: producto.activo
       });
       this.onCategoriaChange(producto.categoria);
     });
@@ -78,6 +83,7 @@ export class ProductoDetallesComponent implements OnInit {
     if (this.productoForm.valid) {
       this.productoService.actualizarProducto(this.productoId, this.productoForm.value).subscribe({
         next: () => {
+          console.log("Este es el precio 2: "+ this.productoForm.get('precio2')?.value)
           this.router.navigate(['/tienda-productos']); // Redirige a la lista de productos después de actualizar
         },
         error: (error) => {

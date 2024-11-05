@@ -5,5 +5,7 @@ export interface blog{
     idUsuario: number,
     fechaPublicacion: Date,
     estado:string,
-    nombreAutor: string
+    nombreAutor: string,
+    categoriaId: number,
+    nombreCategoria: string
 }

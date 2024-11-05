@@ -1,9 +1,11 @@
 <mat-toolbar class="custom-toolbar">
-  <img src="https://i.postimg.cc/tCWhTZwp/logo.png" alt="Logo" class="logo">
-  <span class="username" *ngIf="nombreAutor">{{ nombreAutor }}</span>
+  <div class="logo-container">
+    <img src="https://i.postimg.cc/tCWhTZwp/logo.png" alt="Logo" class="logo">
+    <span class="username" *ngIf="nombreAutor">{{ nombreAutor }}</span>
+  </div>
   <div class="menu-items">
     <ng-container *ngFor="let route of routes; let i = index">
-      <ng-container *ngIf="i < 2">
+      <ng-container *ngIf="i < 2 && (route.allowedRoles.includes(rolUsuario) || !route.allowedRoles.length)">
         <button mat-button *ngIf="route.requiresToken === hasToken || route.general" (click)="navigateTo(route.path)">
           <mat-icon>{{ route.icon }}</mat-icon>
           <span>{{ route.name }}</span>
@@ -18,7 +20,7 @@
     </button>
     <mat-menu #moreMenu="matMenu">
       <ng-container *ngFor="let route of routes; let i = index">
-        <ng-container *ngIf="i >= 2">
+        <ng-container *ngIf="i >= 2 && (route.allowedRoles.includes(rolUsuario) || !route.allowedRoles.length)">
           <button mat-menu-item *ngIf="route.requiresToken === hasToken || route.general" (click)="navigateTo(route.path)">
             <mat-icon>{{ route.icon }}</mat-icon>
             <span>{{ route.name }}</span>

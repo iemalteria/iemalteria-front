@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../custom/menu/menu.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-producto-crear',
@@ -24,7 +25,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSlideToggleModule
   ],
   templateUrl: './producto-crear.component.html',
   styleUrls: ['./producto-crear.component.css'],
@@ -34,6 +36,7 @@ export class ProductoCrearComponent {
   characterCount = 0;
   categorias: string[] = ['Mujer', 'Hombre', 'Niño', 'Huerta', 'Emprendimientos'];
   tipos: string[] = [];
+  isChecked = true;
   private _snackBar = inject(MatSnackBar);
 
   constructor(
@@ -45,6 +48,8 @@ export class ProductoCrearComponent {
       nombre: ['', [Validators.required]],
       imagenUrl: ['', [Validators.required]],
       precio: ['', [Validators.required]],
+      precio2: [''],
+      activo: [true],
       descripcion: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
       tipo: ['', [Validators.required]],
@@ -66,6 +71,10 @@ export class ProductoCrearComponent {
 
   get precio(){
     return this.productoForm.get('precio');
+  }
+
+  get precio2(){
+    return this.productoForm.get('precio2');
   }
 
   get descripcion() {

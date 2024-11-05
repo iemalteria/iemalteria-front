@@ -1,0 +1,32 @@
+<app-menu></app-menu>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Crear Registro Crese</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="creseForm" (ngSubmit)="crearCrese()">
+      <mat-form-field appearance="fill">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo">
+        <mat-error *ngIf="titulo != null && titulo.hasError('required')">El título es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Texto</mat-label>
+        <textarea matInput formControlName="texto"></textarea>
+        <mat-error *ngIf="texto != null && texto.hasError('required')">El texto es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Video URL</mat-label>
+        <input matInput formControlName="videoUrl">
+        <mat-error *ngIf="videoUrl != null && videoUrl.hasError('required')">El video es requerido</mat-error>
+      </mat-form-field>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <button mat-button (click)="router.navigate(['crese'])">Cancelar</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

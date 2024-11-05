@@ -1,3 +1,3 @@
 export const appsettings = {
-    apiUrl: "http://localhost:5034/api/"
+    apiUrl: "https://iemalteriaapi.somee.com/api/"
 }

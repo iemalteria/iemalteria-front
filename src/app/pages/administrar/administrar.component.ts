@@ -12,6 +12,8 @@ import { textoweb } from '../../interfaces/textoweb';
 import { MenuComponent } from '../../custom/menu/menu.component';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CreseComponent } from '../crese/crese.component';
+import { UsuariosComponent } from '../usuarios/usuarios.component';
 
 @Component({
   selector: 'app-administrar',
@@ -26,7 +28,9 @@ import { CommonModule } from '@angular/common';
     MatSortModule,
     ReactiveFormsModule,
     MenuComponent,
-    CommonModule
+    CommonModule,
+    CreseComponent,
+    UsuariosComponent
   ],
   templateUrl: './administrar.component.html',
   styleUrls: ['./administrar.component.css']

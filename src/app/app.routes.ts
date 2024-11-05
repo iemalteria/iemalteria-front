@@ -16,6 +16,14 @@ import { TiendaComponent } from './pages/tienda/tienda.component';
 import { TiendaProductosComponent } from './pages/tienda-productos/tienda-productos.component';
 import { ProductoCrearComponent } from './pages/producto-crear/producto-crear.component';
 import { ProductoDetallesComponent } from './pages/producto-detalles/producto-detalles.component';
+import { CreseComponent } from './pages/crese/crese.component';
+import { CreseDetallesComponent } from './pages/crese-detalles/crese-detalles.component';
+import { CreseCrearComponent } from './pages/crese-crear/crese-crear.component';
+import { CategoriaBlogComponent } from './pages/categoria-blog-crear/categoria-blog.component';
+import { CategoriaBlogListarComponent } from './pages/categoria-blog-listar/categoria-blog-listar.component';
+import { CategoriaBlogDetallesComponent } from './pages/categoria-blog-detalles/categoria-blog-detalles.component';
+import { BlogCategoriaComponent } from './pages/blog-categoria/blog-categoria.component';
+import { UsuariosDetallesComponent } from './pages/usuarios-detalles/usuarios-detalles.component';
 
 
 export const routes: Routes = [
@@ -32,10 +40,10 @@ export const routes: Routes = [
         path:"registro",component:RegistroComponent
     },
     {
-        path:"inicio",component:InicioComponent, canActivate:[authGuard],
+        path:"inicio",component:InicioComponent, 
     },
     {
-        path:"blog-detalles/:id",component:BlogDetallesComponent, canActivate:[authGuard],
+        path:"blog-detalles/:id",component:BlogDetallesComponent, 
     },
     {
         path:"crear-blog",component:CrearBlogComponent, canActivate:[authGuard]
@@ -73,4 +81,29 @@ export const routes: Routes = [
     {
         path:"producto-detalles/:id", component:ProductoDetallesComponent, canActivate:[authGuard]
     },
+    {
+        path:"crese", component:CreseComponent, canActivate:[authGuard]
+    },
+    {
+        path:"crese-detalles/:id", component: CreseDetallesComponent, canActivate:[authGuard]
+    },
+    {
+        path:"crese-crear", component: CreseCrearComponent, canActivate:[authGuard]
+    },
+    {
+        path:"categoria-blog-crear", component: CategoriaBlogComponent, canActivate:[authGuard]
+    },
+    {
+        path:"categoria-blog", component: CategoriaBlogListarComponent, canActivate:[authGuard]
+    },
+    {
+        path:"categoria-blog-detalles/:id", component: CategoriaBlogDetallesComponent, canActivate:[authGuard]
+    },
+    {
+        path:"blog-categoria/:id", component: BlogCategoriaComponent
+    },
+    {
+        path:"usuarios-detalles/:id", component: UsuariosDetallesComponent, canActivate:[authGuard]
+    }
+
 ];

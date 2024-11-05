@@ -13,6 +13,8 @@ import { MenuComponent } from '../../custom/menu/menu.component';
 import { Router } from '@angular/router';
 import { AccessoService } from '../../services/accesso.service';
 import { forkJoin, Observable } from 'rxjs';
+import { CategoriaBlog } from '../../interfaces/categoriaBlog';
+import { CategoriaBlogService } from '../../services/categoria-blog.service';
 
 @Component({
   selector: 'app-inicio',
@@ -35,25 +37,45 @@ export class InicioComponent {
   private blogService = inject(BlogService);
   private accessoService = inject(AccessoService);
   public listaBlog: MatTableDataSource<blog> = new MatTableDataSource<blog>();
-  public displayedColumns: string[] = ['Titulo', 'Fecha de publicación', 'Autor'];
+  public displayedColumns: string[] = ['Titulo', 'Fecha de publicación', 'Autor', 'Categoria'];
   private router = inject(Router);
+  public categorias: CategoriaBlog[] = []; // Lista para almacenar las categorías
+  private categoriaBlogService = inject(CategoriaBlogService);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor() {
+    // Obtener todas las categorías y luego los blogs
+    this.categoriaBlogService.lista().subscribe({
+      next: (categorias) => {
+        this.categorias = categorias.value; // Guarda las categorías para su uso posterior
+        this.cargarBlogs();
+      },
+      error: (error) => {
+        console.log('Error al obtener categorías:', error);
+      }
+    });
+  }
+
+  cargarBlogs() {
     this.blogService.lista().subscribe({
       next: (data) => {
         if (data.value.length > 0) {
           const autorObservables = data.value.map(blog => 
             this.encontrarAutorPeticion(blog.idUsuario)
           );
-
+          
           // Ejecuta todas las peticiones en paralelo
           forkJoin(autorObservables).subscribe((nombresAutores) => {
             data.value.forEach((blog, index) => {
               blog.nombreAutor = nombresAutores[index];
+              
+              // Busca el nombre de la categoría para cada blog y lo asigna
+              const categoria = this.categorias.find(cat => cat.id === blog.categoriaId);
+              blog.nombreCategoria = categoria ? categoria.nombre : 'Sin categoría';
             });
+          
             this.listaBlog.data = data.value;
             this.listaBlog.sort = this.sort;
             this.listaBlog.paginator = this.paginator;

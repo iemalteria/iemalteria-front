@@ -9,6 +9,14 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Categoría</mat-label>
+      <mat-select [(ngModel)]="categoriaId" name="categoriaId" required>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="!categoriaId">La categoría es requerida</mat-error>
+    </mat-form-field>
+
     <quill-editor name="contenido" [(ngModel)]="contenido" id="txtContenido" class="quill-editor"></quill-editor>
     <mat-error *ngIf="blogForm.controls['contenido']?.invalid && blogForm.controls['contenido']?.touched">
       El contenido es obligatorio

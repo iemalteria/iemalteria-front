@@ -1,0 +1,61 @@
+.blog-list-card {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-field {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .demo-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .mat-header-cell {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: left;
+    padding: 16px;
+  }
+  
+  .mat-cell {
+    padding: 16px;
+    text-align: left;
+  }
+  
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    background-color: #f5f5f5;
+  }
+  
+  .demo-row-is-clicked {
+    background-color: #e0f7fa;
+    font-weight: bold;
+  }
+  
+  .no-data-row {
+    text-align: center;
+    color: #ff5252;
+    font-weight: bold;
+  }
+  
+  .mat-paginator {
+    background-color: #f5f5f5;
+    border-top: 1px solid #e0e0e0;
+    padding: 16px;
+  }
+  

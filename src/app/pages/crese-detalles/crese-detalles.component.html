@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Editar Crese</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="creseForm" (ngSubmit)="actualizarCrese()">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Titulo</mat-label>
+        <input matInput formControlName="titulo">
+        <mat-error *ngIf="creseForm.get('titulo')?.hasError('required')">
+          El titulo es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Texto</mat-label>
+        <textarea matInput formControlName="texto"></textarea>
+        <mat-error *ngIf="creseForm.get('texto')?.hasError('required')">
+          El texto es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Video URL</mat-label>
+        <input matInput formControlName="videoUrl">
+        <mat-error *ngIf="creseForm.get('videoUrl')?.hasError('required')">
+          El Video URL es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <div formArrayName="creseImagenes">
+        <div *ngFor="let imagen of creseImagenes.controls; let i = index" [formGroupName]="i">
+          
+          <button mat-button color="warn" (click)="eliminarImagen(i)">Eliminar Imagen</button>
+          <!--<button mat-button color="primary" (click)="guardarImagen(imagen.get.val)">Actualizar Imagen</button> -->
+          <!-- Mostrar la imagen -->
+          <div *ngIf="imagen.get('imagenUrl')?.value">
+            <img [src]="imagen.get('imagenUrl')?.value" alt="Imagen" style="width: 300px; height: 300px; margin-top: 10px;">
+            <mat-form-field appearance="fill">
+              <mat-label>Imagen URL</mat-label>
+              <input matInput formControlName="imagenUrl" required>
+              <mat-error *ngIf="imagen.hasError('required')">
+                La imagen URL es requerida
+              </mat-error>
+            </mat-form-field>
+
+            
+          </div>
+        </div>
+      </div>
+
+      <button mat-button color="primary" (click)="agregarImagen()">Añadir Imagen</button>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <button mat-button (click)="router.navigate(['/administrar'])">Cancelar</button>
+        <button mat-raised-button color="warn" (click)="eliminarCrese()">Eliminar</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -14,6 +14,7 @@
       <h1>{{ppccsText.titulo}}</h1>
       <p><b>{{ppccsText.altText}}</b></p>
       <p>{{ppccsText.texto}}</p>
+      <img class="ppccs-image" [src]="ppccsText.imagenUrl"/>
       </div>
         <div *ngFor="let misionText of getTextosBySection('Mision')">
       <h1>{{misionText.titulo}}</h1>
@@ -33,29 +34,18 @@
   <div class='semilleros'>
     <h1 class="create-title">Centros de Interés</h1>
     <div class="card-container">
-      <div class="card" *ngFor="let semilleroText of getTextosBySection('Semillero1')">
-        <img [src]="semilleroText.imagenUrl" [alt]="semilleroText.altText" />
-        <h3>{{semilleroText.titulo}}</h3>
-      </div>
-      <div class="card" *ngFor="let semilleroText of getTextosBySection('Semillero2')">
-        <img [src]="semilleroText.imagenUrl" [alt]="semilleroText.altText" />
-        <h3>{{semilleroText.titulo}}</h3>
-      </div>
-      <div class="card" *ngFor="let semilleroText of getTextosBySection('Semillero3')">
-        <img [src]="semilleroText.imagenUrl" [alt]="semilleroText.altText" />
-        <h3>{{semilleroText.titulo}}</h3>
-      </div>
-      <div class="card" *ngFor="let semilleroText of getTextosBySection('Semillero4')">
-        <img [src]="semilleroText.imagenUrl" [alt]="semilleroText.altText" />
-        <h3>{{semilleroText.titulo}}</h3>
-      </div>
-      <div class="card" *ngFor="let semilleroText of getTextosBySection('Semillero5')">
-        <img [src]="semilleroText.imagenUrl" [alt]="semilleroText.altText" />
-        <h3>{{semilleroText.titulo}}</h3>
-      </div>
-      <div class="card" *ngFor="let semilleroText of getTextosBySection('Semillero6')">
-        <img [src]="semilleroText.imagenUrl" [alt]="semilleroText.altText" />
-        <h3>{{semilleroText.titulo}}</h3>
+      <div class="card" *ngFor="let crese of creseList">
+        <div class="image-gallery">
+          <img [src]="creseImages[crese.id][imagenActual[crese.id]].imagenUrl" [alt]="crese.titulo" *ngIf="creseImages[crese.id] && creseImages[crese.id].length" class="crese-image" (click)="mostrarVideo(crese.videoUrl)"/>
+      <button class="nav-button prev" (click)="anteriorImagen(crese.id)" [disabled]="creseImages[crese.id] && !creseImages[crese.id].length">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button class="nav-button next" (click)="siguienteImagen(crese.id)" [disabled]="creseImages[crese.id] && !creseImages[crese.id].length">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+        </div>
+        <h3>{{crese.titulo}}</h3>
+        <p>{{crese.texto}}</p>
       </div>
     </div>
   </div>
@@ -68,4 +58,15 @@
         width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
+  <button mat-button [matMenuTriggerFor]="categoriasMenu" class="floating-button"><mat-icon>category</mat-icon></button> <!-- Botón para abrir el menú -->
+  
+  <mat-menu #categoriasMenu="matMenu">
+    <button mat-menu-item *ngFor="let categoria of categorias" (click)="filtrarBlogsPorCategoria(categoria)">
+      {{ categoria.nombre }}
+    </button>
+  </mat-menu>
 </div>
+
+
+
+  

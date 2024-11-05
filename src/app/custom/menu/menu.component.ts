@@ -25,6 +25,8 @@ export class MenuComponent implements OnInit {
   idUsuario: number = 0;
   public nombreAutor?: string;
   public correoAutor?: string;
+  public rolUsuario?: string;
+  filteredRoutes: Array<any> = [];
 
   private router = inject(Router);
   navigateTo(ruta:string)
@@ -51,36 +53,44 @@ export class MenuComponent implements OnInit {
   
   async checkToken() {
     this.hasToken = await this.validarToken();
-    if(this.hasToken)
-    {
-    this.accesoService.obtenerInformacionUsuario().subscribe({
-      next: (response: responseUsuarioToken) => {
-        if (response.isSuccess && response.usuario?.id) {
-          this.idUsuario = response.usuario.id;
-          if (this.idUsuario !== undefined) {
-            this.accesoService.obtenerUsuario(this.idUsuario).subscribe(response => {
-              if (response.isSuccess) {
-                console.log('Usuario:', response.usuario);
-                if (response.usuario?.nombre !== undefined && response.usuario?.correo !== undefined) {
-                  this.nombreAutor = response.usuario.nombre;
-                  this.correoAutor = response.usuario.correo;
+    if (this.hasToken) {
+      this.accesoService.obtenerInformacionUsuario().subscribe({
+        next: (response: responseUsuarioToken) => {
+          if (response.isSuccess && response.usuario?.id) {
+            this.idUsuario = response.usuario.id;
+            if (this.idUsuario !== undefined) {
+              this.accesoService.obtenerUsuario(this.idUsuario).subscribe(response => {
+                if (response.isSuccess) {
+                  const usuario = response.usuario;
+                  if (usuario?.nombre && usuario?.correo) {
+                    this.nombreAutor = usuario.nombre;
+                    this.correoAutor = usuario.correo;
+                  }
+                  this.rolUsuario = usuario?.rol; // Asignar el rol del usuario
+                  this.filterRoutes(); // Filtrar rutas según el rol del usuario
+                } else {
+                  console.error('Error:', response.mensaje);
                 }
-              } else {
-                console.error('Error:', response.mensaje);
-              }
-            });
+              });
+            }
+          } else {
+            console.error('Error al obtener la información del usuario:', response.mensaje);
           }
-        } else {
-          console.error('Error al obtener la información del usuario:', response.mensaje);
-          // Manejo de errores
+        },
+        error: (error) => {
+          console.error('Error al obtener la información del usuario:', error.message);
         }
-      },
-      error: (error) => {
-        console.error('Error al obtener la información del usuario:', error.message);
-        // Manejo de errores
-      }
-    });
+      });
+    } else {
+      this.filteredRoutes = this.routes; // Si no hay token, mostrar todas las rutas generales
+    }
   }
+
+  filterRoutes() {
+    this.filteredRoutes = this.routes.filter(route => {
+      const hasRole = route.allowedRoles.length === 0 || (this.rolUsuario && route.allowedRoles.includes(this.rolUsuario));
+      return (!route.requiresToken || this.hasToken) && hasRole;
+    });
   }
   async validarToken(): Promise<boolean> {
     return this.accesoService.validarToken(this.token).pipe(

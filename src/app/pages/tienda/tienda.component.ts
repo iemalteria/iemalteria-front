@@ -98,7 +98,7 @@ export class TiendaComponent implements OnInit, AfterViewInit {
     const archivoPdf = new File([pdfBlob], 'factura.pdf', { type: 'application/pdf' });
   
     // Usar el servicio de correo para enviar el archivo
-    this.emailService.enviarCorreoConPdf('institucionmalteria@gmail.com', `Sistema de separado - ${this.nombreCliente}`, 'Adjuntamos la factura de la próxima compra.', archivoPdf).subscribe(
+    this.emailService.enviarCorreoConPdf('roperomalteria@gmail.com', `Sistema de separado - ${this.nombreCliente}`, 'Adjuntamos la factura de la próxima compra.', archivoPdf).subscribe(
       (response) => console.log('Correo enviado con éxito:', response),
       (error) => console.error('Error al enviar el correo:', error)
     );

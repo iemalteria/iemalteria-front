@@ -92,7 +92,11 @@
       </mat-card-header>
       <img mat-card-image [src]="producto.imagenUrl" alt="{{ producto.nombre }}" class="product-card-img">
 
-      <mat-card-content>
+      <mat-card-content *ngIf="producto.activo">
+        <p>{{ producto.descripcion }}</p>
+        <p>Precio: {{ producto.precio | currency }} - {{producto.precio2 | currency}}</p>
+      </mat-card-content>
+      <mat-card-content *ngIf="!producto.activo">
         <p>{{ producto.descripcion }}</p>
         <p>Precio: {{ producto.precio | currency }}</p>
       </mat-card-content>

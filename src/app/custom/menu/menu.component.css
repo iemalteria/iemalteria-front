@@ -1,37 +1,40 @@
 .custom-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1a53ae; /* Color de fondo azul */
-    padding: 0 20px; /* Espaciado interno */
-  }
-  
-  .logo {
-    height: 40px;
-    margin-right: 16px;
-  }
-  
-  .username {
-    font-size: 18px;
-    color: white; /* Color del texto */
-    text-align: left;
-    margin-right: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a53ae; /* Color de fondo azul */
+  padding: 0 20px; /* Espaciado interno */
+  width: 100%;
+}
 
-  }
-  
-  .menu-items {
-    display: flex;
-    gap: 20px; /* Espacio entre los items del menú */
-    
-  }
-  
-  .menu-items button {
-    color: white; /* Color del texto */
-    display: flex;
-    align-items: center;  
-  }
-  
-  .menu-items mat-icon {
-    margin-right: 8px; /* Espacio entre el icono y el texto */
-  }
-  
+.logo-container {
+  display: flex;
+  align-items: center; /* Alinear verticalmente el logo y el nombre de usuario */
+}
+
+.logo {
+  height: 40px;
+  margin-right: 0; /* Sin espacio entre el logo y el nombre de usuario */
+}
+
+.username {
+  font-size: 18px;
+  color: white; /* Color del texto */
+  margin-left: 10px; /* Asegurarse de que no haya margen */
+  padding: 0; /* Sin relleno */
+}
+
+.menu-items {
+  display: flex;
+  gap: 20px; /* Espacio entre los items del menú */
+}
+
+.menu-items button {
+  color: white; /* Color del texto */
+  display: flex;
+  align-items: center;  
+}
+
+.menu-items mat-icon {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+}

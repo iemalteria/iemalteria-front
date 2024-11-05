@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+<mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Detalles del Usuario</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="usuarioForm" (ngSubmit)="actualizarUsuario()">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" placeholder="Nombre">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="correo" placeholder="Email">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="rol">
+            <mat-option value="Usuario">Usuario</mat-option>
+            <mat-option value="Padre de familia">Padre de familia</mat-option>
+            <mat-option value="Estudiante">Estudiante</mat-option>
+            <mat-option value="Docente">Docente</mat-option>
+            <mat-option value="Administrador">Administrador</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit">Actualizar Usuario</button>
+          <button mat-button (click)="router.navigate(['/administrar'])">Cancelar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

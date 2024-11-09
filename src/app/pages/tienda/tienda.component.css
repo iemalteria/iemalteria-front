@@ -122,3 +122,66 @@ textarea {
   resize: vertical; /* Permitir cambiar el tamaño solo verticalmente */
   min-height: 100px; /* Altura mínima */
 }
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Centra verticalmente */
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  opacity: 0.7;
+  z-index: 10; /* Asegura que los botones estén encima de la imagen */
+}
+
+.nav-button.prev {
+  left: 10px; /* Coloca el botón de anterior en el lado izquierdo */
+}
+
+.nav-button.next {
+  right: 10px; /* Coloca el botón de siguiente en el lado derecho */
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.image-gallery {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crese-image {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.crese-image:hover {
+  transform: scale(1.05);
+}
+
+.crese-image::after {
+  content: '\25BA';
+  font-size: 4rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.crese-image:hover::after {
+  opacity: 0.8;
+}

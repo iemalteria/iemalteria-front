@@ -32,9 +32,16 @@
 .menu-items button {
   color: white; /* Color del texto */
   display: flex;
-  align-items: center;  
+  align-items: center;
 }
 
 .menu-items mat-icon {
   margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+/* Adaptación para dispositivos móviles */
+@media screen and (max-width: 600px) {
+  .username {
+    display: none; /* Oculta el nombre de usuario en pantallas pequeñas */
+  }
 }

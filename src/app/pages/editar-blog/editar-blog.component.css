@@ -1,0 +1,91 @@
+.quill-editor .ql-editor img {
+    width: 100%; /* Ajusta al ancho del contenedor */
+    max-width: 800px; /* Limita el ancho máximo */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 4px; /* Opcional: agrega un borde redondeado */
+  }
+  
+  .create-blog-card {
+    max-width: 1000px;
+    margin: 32px auto;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .blog-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-field {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  
+  .quill-editor {
+    height: 350px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 24px;
+  }
+  
+  .submit-button {
+    align-self: center;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #1565c0;
+  }
+  
+  .cancel-button {
+    align-self: center;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #f5f5f5;
+    color: #1976d2;
+    border: 1px solid #1976d2;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancel-button:hover {
+    background-color: #e1e1e1;
+  }
+  
+  .mat-form-field {
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    padding: 0 8px;
+  }
+  
+  .mat-form-field-appearance-fill .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+  
+  .ql-toolbar {
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+  }
+  
+  .ql-container {
+    border-radius: 0 0 4px 4px;
+  }
+  

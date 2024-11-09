@@ -27,13 +27,6 @@
           </td>
         </ng-container>
 
-        <!-- Imagen URL Column -->
-        <ng-container matColumnDef="Imagen URL">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen URL </th>
-          <td mat-cell *matCellDef="let row">
-            <img *ngIf="row.imagenUrl" [src]="row.imagenUrl" alt="{{row.nombre}}" style="width: 100px; height: auto;">
-          </td>
-        </ng-container>
 
         <!-- Descripción Column -->
         <ng-container matColumnDef="Descripción">

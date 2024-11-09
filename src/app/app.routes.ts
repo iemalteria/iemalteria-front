@@ -24,6 +24,8 @@ import { CategoriaBlogListarComponent } from './pages/categoria-blog-listar/cate
 import { CategoriaBlogDetallesComponent } from './pages/categoria-blog-detalles/categoria-blog-detalles.component';
 import { BlogCategoriaComponent } from './pages/blog-categoria/blog-categoria.component';
 import { UsuariosDetallesComponent } from './pages/usuarios-detalles/usuarios-detalles.component';
+import { AdministrarBlogsComponent } from './pages/administrar-blogs/administrar-blogs.component';
+import { EditarBlogComponent } from './pages/editar-blog/editar-blog.component';
 
 
 export const routes: Routes = [
@@ -104,6 +106,12 @@ export const routes: Routes = [
     },
     {
         path:"usuarios-detalles/:id", component: UsuariosDetallesComponent, canActivate:[authGuard]
+    },
+    {
+        path:"administrar-blogs", component: AdministrarBlogsComponent, canActivate:[authGuard]
+    },
+    {
+        path:"editar-blog/:id", component:EditarBlogComponent, canActivate:[authGuard]
     }
 
 ];

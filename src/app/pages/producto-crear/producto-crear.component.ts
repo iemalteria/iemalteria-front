@@ -46,13 +46,13 @@ export class ProductoCrearComponent {
   ) {
     this.productoForm = this.fb.group({
       nombre: ['', [Validators.required]],
-      imagenUrl: ['', [Validators.required]],
       precio: ['', [Validators.required]],
-      precio2: [''],
+      precio2: ['0'],
       activo: [true],
       descripcion: ['', [Validators.required]],
       categoria: ['', [Validators.required]],
       tipo: ['', [Validators.required]],
+      videoUrl: ['']
     });
 
     this.productoForm.get('categoria')?.valueChanges.subscribe((categoria) => {
@@ -63,10 +63,6 @@ export class ProductoCrearComponent {
 
   get nombre() {
     return this.productoForm.get('nombre');
-  }
-
-  get imagenUrl() {
-    return this.productoForm.get('imagenUrl');
   }
 
   get precio(){
@@ -88,6 +84,9 @@ export class ProductoCrearComponent {
   get tipo() {
     return this.productoForm.get('tipo');
   }
+  get videoUrl() {
+    return this.productoForm.get('videoUrl');
+  }
 
   updateTipoOptions(categoria: string) {
     switch (categoria) {
@@ -100,7 +99,7 @@ export class ProductoCrearComponent {
         this.tipos = ['Frutas', 'Verduras'];
         break;
       case 'Emprendimientos':
-        this.tipos = ['Otros'];
+        this.tipos = ['Varios'];
         break;
       default:
         this.tipos = [];

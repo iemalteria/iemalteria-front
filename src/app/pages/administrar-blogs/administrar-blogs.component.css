@@ -58,11 +58,4 @@
     border-top: 1px solid #e0e0e0;
     padding: 16px;
   }
-  .category-description {
-    display: block; /* Asegura que se muestre en su propia línea */
-    margin: 12px 0; /* Espaciado superior e inferior */
-    font-size: 14px; /* Tamaño de fuente */
-    color: #666; /* Color de texto */
-    font-style: italic; /* Estilo de fuente en cursiva */
-    text-align: justify; /* Justificar el texto */
-}
+  

@@ -7,6 +7,7 @@ export const routes = [
     { path: 'inicio', name: "Blogs", icon: "article", requiresToken: false, general: true, allowedRoles: [] },
     { path: 'crear-blog', name: "Crear blog", icon: "create", requiresToken: true, general: false, allowedRoles: ["Administrador", "Docente", "Estudiante"] },
     { path: 'categoria-blog', name: "Categorias", icon: "category", requiresToken: true, general: false, allowedRoles: ["Administrador", "Docente"] },
+    { path: 'administrar-blogs', name: "Administrar Blogs", icon: "manage_accounts", requiresToken: true, general: false, allowedRoles: ["Administrador", "Docente"]},
     { path: 'empleados', name: "Planta de personal", icon: "people", requiresToken: true, general: false, allowedRoles: ["Administrador"] },
     { path: 'tienda', name: "Emprendimientos", icon: "shop", requiresToken: false, general: true, allowedRoles: [] },
     { path: 'tienda-productos', name: "Productos", icon: "inventory", requiresToken: true, general: false, allowedRoles: ["Administrador"] },

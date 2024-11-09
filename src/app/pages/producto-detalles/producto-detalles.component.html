@@ -15,14 +15,6 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Imagen URL</mat-label>
-        <input matInput formControlName="imagenUrl">
-        <mat-error *ngIf="productoForm.get('imagenUrl')?.hasError('required')">
-          La Imagen URL es requerida
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
         <mat-label>Descripción</mat-label>
         <input matInput formControlName="descripcion" maxlength="120" (input)="updateCharacterCount()">
         <mat-error *ngIf="productoForm.get('descripcion')?.hasError('required')">
@@ -55,7 +47,8 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-slide-toggle matInput formControlName="activo"> Rango de precio</mat-slide-toggle>
+      <mat-slide-toggle matInput formControlName="activo">Rango de precio</mat-slide-toggle>
+      
       <mat-form-field appearance="fill">
         <mat-label>Precio Minimo</mat-label>
         <input matInput formControlName="precio" type="number" min="0" step="0.01">
@@ -70,13 +63,30 @@
       <mat-form-field appearance="fill" *ngIf="productoForm.get('activo')?.value">
         <mat-label>Precio Maximo</mat-label>
         <input matInput formControlName="precio2" type="number" min="0" step="0.01">
-        <mat-error *ngIf="productoForm.get('precio2')?.hasError('required')">
-          El precio es requerido
-        </mat-error>
         <mat-error *ngIf="productoForm.get('precio2')?.hasError('min')">
           El precio no puede ser negativo
         </mat-error>
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Video Url</mat-label>
+        <input matInput formControlName="videoUrl">
+      </mat-form-field>
+      <div formArrayName="productoImagenes">
+        <div *ngFor="let imagen of productoImagenes.controls; let i = index" [formGroupName]="i">
+          <mat-form-field appearance="fill">
+            <mat-label>Imagen URL</mat-label>
+            <input matInput formControlName="imagenUrl" placeholder="URL de la imagen">
+            <img [src]="imagen.get('imagenUrl')?.value" alt="Imagen" style="width: 300px; height: 300px; margin-top: 10px;">
+            <mat-error *ngIf="productoForm.get(['productoImagenes', i, 'imagenUrl'])?.hasError('required')">
+              La URL de la imagen es requerida
+            </mat-error>
+          </mat-form-field>
+          <button mat-icon-button color="warn" (click)="eliminarImagen(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button color="primary" (click)="agregarImagen()">Agregar Imagen</button>
+      </div>
 
       <div class="button-group">
         <button mat-raised-button color="primary" type="submit">Guardar</button>

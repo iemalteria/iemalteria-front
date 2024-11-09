@@ -14,6 +14,10 @@ import jsPDF from 'jspdf'; // Importar jsPDF
 import { EmailService } from '../../services/email.service'; // Importar el servicio de correo
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { ProductoImagenes } from '../../interfaces/productoImagenes';
+import { ProductoImagenesService } from '../../services/producto-imagenes.service';
+import { MatDialog } from '@angular/material/dialog';
+import { VideoDialogComponent } from '../video-dialog/video-dialog.component';
 
 @Component({
   selector: 'app-tienda',
@@ -31,10 +35,13 @@ export class TiendaComponent implements OnInit, AfterViewInit {
   nombreCliente: string = '';
   celularCliente: string = '';
   mensajeCliente: string = '';
+ 
+  productoImages: { [key: number]: ProductoImagenes[] } = {}; // Almacena imágenes por ID de Crese
+  imagenActual: { [key: number]: number } = {}; // Almacena el índice de la imagen actual para cada Crese
 
   private emailService = inject(EmailService); // Inyectar el servicio de correo
 
-  constructor(private productosService: ProductosService, private carritoService: CarritoService) {}
+  constructor(private dialog: MatDialog,private productosService: ProductosService, private carritoService: CarritoService, private productoImagenesService: ProductoImagenesService) {}
 
   ngOnInit(): void {
     this.mostrarTodosLosProductos(); // Mostrar todos los productos al iniciar
@@ -144,6 +151,10 @@ export class TiendaComponent implements OnInit, AfterViewInit {
     this.productosService.lista().subscribe(
       (response) => {
         this.productosFiltrados = response.value; // Asumiendo que la respuesta contiene un array de productos
+        this.productosFiltrados.forEach(producto => {
+        this.cargarImagenes(producto.id);
+          this.imagenActual[producto.id] = 0; // Inicializa el índice de la imagen actual en 0
+        });
       },
       (error) => {
         console.error('Error al obtener productos:', error);
@@ -163,4 +174,38 @@ export class TiendaComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
+  siguienteImagen(productoId: number): void {
+    if (this.productoImages[productoId]?.length) {
+      this.imagenActual[productoId] = (this.imagenActual[productoId] + 1) % this.productoImages[productoId].length;
+    }
+  }
+
+  anteriorImagen(productoId: number): void {
+    if (this.productoImages[productoId]?.length) {
+      this.imagenActual[productoId] = (this.imagenActual[productoId] - 1 + this.productoImages[productoId].length) % this.productoImages[productoId].length;
+    }
+  }
+
+  cargarImagenes(productoId: number): void {
+    this.productoImagenesService.obtenerProductoImagenPorProductoId(productoId).subscribe({
+      next: (response) => {
+        this.productoImages[productoId] = response.value;
+      },
+      error: (err) => {
+        console.error(`Error loading images for Crese ID ${productoId}`, err);
+      }
+    });
+  }
+  mostrarVideo(url: string) {
+    if(url)
+    {
+    this.dialog.open(VideoDialogComponent, {
+      data: { videoUrl: url },
+      width: '600px'
+    });
+  }
+  }
+
+
 }

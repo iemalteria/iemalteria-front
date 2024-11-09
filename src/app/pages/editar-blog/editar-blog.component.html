@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+
+<mat-card appearance="outlined" class="create-blog-card">
+  <mat-card-header>
+    <mat-card-title>Editar Blog</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="blogForm" (ngSubmit)="actualizarBlog()" class="blog-form">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo">
+        <mat-error *ngIf="blogForm.get('titulo')?.hasError('required')">
+          El título es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="categoriaId">
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="blogForm.get('categoriaId')?.hasError('required')">
+          La categoría es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <quill-editor formControlName="contenido" class="quill-editor"></quill-editor>
+      <mat-error *ngIf="blogForm.get('contenido')?.hasError('required')">
+        El contenido es obligatorio
+      </mat-error>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="blogForm.invalid" class="submit-button">
+          Guardar Cambios
+        </button>
+        <button mat-button (click)="cancelarEdicion()" class="cancel-button">Cancelar</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

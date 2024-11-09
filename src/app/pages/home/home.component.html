@@ -58,7 +58,7 @@
         width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
-  <button mat-button [matMenuTriggerFor]="categoriasMenu" class="floating-button"><mat-icon>category</mat-icon></button> <!-- Botón para abrir el menú -->
+  <button mat-button [matMenuTriggerFor]="categoriasMenu" class="floating-button" style="color:white">¡Entérate!</button> <!-- Botón para abrir el menú -->
   
   <mat-menu #categoriasMenu="matMenu">
     <button mat-menu-item *ngFor="let categoria of categorias" (click)="filtrarBlogsPorCategoria(categoria)">

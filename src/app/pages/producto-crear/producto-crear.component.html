@@ -12,12 +12,6 @@
         <mat-error *ngIf="nombre?.hasError('required')">El nombre es requerido</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Imagen URL</mat-label>
-        <input matInput formControlName="imagenUrl">
-        <mat-error *ngIf="imagenUrl?.hasError('required')">La imagen es requerida</mat-error>
-      </mat-form-field>
-
       <mat-slide-toggle matInput formControlName="activo"> Rango de precio</mat-slide-toggle>
       <mat-form-field appearance="fill">
         <mat-label>Precio Minimo</mat-label>
@@ -55,6 +49,11 @@
           <mat-option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</mat-option>
         </mat-select>
         <mat-error *ngIf="tipo?.hasError('required')">El tipo es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Video Url</mat-label>
+        <input matInput formControlName="videoUrl">
       </mat-form-field>
 
       <div class="button-group">

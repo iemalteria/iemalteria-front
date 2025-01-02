@@ -48,7 +48,7 @@
       <button mat-menu-item (click)="filtrarProductos('Mujer', 'Zapatos')">Zapatos</button>
       <button mat-menu-item (click)="filtrarProductos('Mujer', 'Pantalon')">Pantalon</button>
       <button mat-menu-item (click)="filtrarProductos('Mujer', 'Camisas')">Camisas</button>
-      <button mat-menu-item (click)="filtrarProductos('Mujer', 'Otros')">Otros</button>
+      <button mat-menu-item (click)="filtrarProductos('Mujer', 'Varios')">Varios</button>
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="belowMenu" style="color:black">Hombre</button>
@@ -56,7 +56,7 @@
       <button mat-menu-item (click)="filtrarProductos('Hombre', 'Zapatos')">Zapatos</button>
       <button mat-menu-item (click)="filtrarProductos('Hombre', 'Pantalon')">Pantalon</button>
       <button mat-menu-item (click)="filtrarProductos('Hombre', 'Camisas')">Camisas</button>
-      <button mat-menu-item (click)="filtrarProductos('Hombre', 'Otros')">Otros</button>
+      <button mat-menu-item (click)="filtrarProductos('Hombre', 'Varios')">Varios</button>
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="beforeMenu" style="color:black">Niño</button>
@@ -64,7 +64,7 @@
       <button mat-menu-item (click)="filtrarProductos('Niño', 'Zapatos')">Zapatos</button>
       <button mat-menu-item (click)="filtrarProductos('Niño', 'Pantalon')">Pantalon</button>
       <button mat-menu-item (click)="filtrarProductos('Niño', 'Camisas')">Camisas</button>
-      <button mat-menu-item (click)="filtrarProductos('Niño', 'Otros')">Otros</button>
+      <button mat-menu-item (click)="filtrarProductos('Niño', 'Varios')">Varios</button>
     </mat-menu>
 
     <button mat-button [matMenuTriggerFor]="afterMenu" style="color:black">Huerta</button>
@@ -75,7 +75,7 @@
 
     <button mat-button [matMenuTriggerFor]="emprendimientoMenu" style="color:black">Emprendimientos</button>
     <mat-menu #emprendimientoMenu="matMenu" xPosition="after">
-      <button mat-menu-item (click)="filtrarProductos('Emprendimientos', 'Varios')">Otros</button>
+      <button mat-menu-item (click)="filtrarProductos('Emprendimientos', 'Varios')">Varios</button>
     </mat-menu>
     <!-- Botón flotante del carrito -->
     <button mat-fab color="accent" class="carrito-fab" (click)="abrirCarrito()"

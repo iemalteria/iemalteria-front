@@ -34,6 +34,45 @@
   height: 35%;
 }
 
+
+
+
+
+
+/* Estilo del ícono de visitas */
+.visitas-icon {
+ 
+  font-size: 24px;
+  color: #00796b; /* Un color verde bonito */
+}
+
+/* Estilo del texto de contador */
+.contador-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.contador-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  margin: 20px auto;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #f5f5f5;
+}
+
+/* Estilo del valor del contador */
+.contador-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #00796b; /* Color verde */
+  margin-left: 10px;
+}
+
 @media screen and (max-width: 1260px) {
   .image1 {
       flex-direction: column;

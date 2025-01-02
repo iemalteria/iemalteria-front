@@ -16,12 +16,16 @@ import { CategoriaBlog } from '../../interfaces/categoriaBlog';
 import { CategoriaBlogService } from '../../services/categoria-blog.service';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { VisitasService } from '../../services/visitas.service';
+import { responseVisita } from '../../interfaces/responseVisita';
+import { Visita } from '../../interfaces/visita';
+import { ComentariosComponent } from '../comentarios/comentarios.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MenuComponent, CommonModule, MatCardModule, MatIconModule, MatMenuModule, MatButtonModule],
+  imports: [MenuComponent, CommonModule, MatCardModule, MatIconModule, MatMenuModule, MatButtonModule, ComentariosComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -31,14 +35,49 @@ export class HomeComponent implements OnInit {
   creseImages: { [key: number]: CreseImagenes[] } = {}; // Almacena imágenes por ID de Crese
   imagenActual: { [key: number]: number } = {}; // Almacena el índice de la imagen actual para cada Crese
   categorias: CategoriaBlog[] = []; // Agrega una propiedad para las categorías
+  visitas: Visita[] = [];
+  contadorVisitas: number = 0;
+  nuevaVisita: Omit<Visita, 'id' | 'fechaVisita'> = {
+    pagina: 'Home',  // Asigna el nombre de la página
+    ipUsuario: 'xxx',           // Inicialmente vacío, lo llenamos después
+    navegador: '',     // Inicialmente vacío, lo llenamos después
+  };
   private router = inject(Router);
+  http: any;
 
-  constructor(private textowebService: TextowebService, private creseService: CreseService, private creseImagenesService: CreseImagenesService, private dialog: MatDialog, private categoriaBlogService: CategoriaBlogService) {}
+  constructor(private textowebService: TextowebService, private creseService: CreseService, private creseImagenesService: CreseImagenesService, private dialog: MatDialog, private categoriaBlogService: CategoriaBlogService, private visitasService: VisitasService) {}
 
   ngOnInit(): void {
     this.loadTextosWeb();
     this.cargarCrese();
     this.cargarCategorias(); // Carga las categorías al iniciar
+    this.crearVisita();
+    this.cargarVisitas();
+    
+  }
+  crearVisita(): void {
+    this.nuevaVisita.navegador = navigator.userAgent;
+    this.visitasService.createVisita(this.nuevaVisita).subscribe({
+      next: (visitaCreada) => {
+        console.log('Visita creada:', visitaCreada);
+       
+      },
+      error: (err) => {
+        console.error('Error al crear la visita:', err);
+      }
+    });
+  }
+
+  cargarVisitas(): void {
+    this.visitasService.getVisitas().subscribe({
+      next: (visitas) => {
+        this.visitas = visitas.value;
+        this.contadorVisitas = this.visitas.length;
+      },
+      error: (err) => {
+        console.error('Error al obtener las visitas:', err);
+      }
+    });
   }
 
   loadTextosWeb(): void {

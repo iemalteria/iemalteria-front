@@ -93,7 +93,8 @@ export class ProductoCrearComponent {
       case 'Mujer':
       case 'Hombre':
       case 'Niño':
-        this.tipos = ['Zapatos', 'Pantalon', 'Camisas', 'Otros'];
+      case 'Niña':
+        this.tipos = ['Zapatos', 'Pantalon', 'Camisas', 'Varios'];
         break;
       case 'Huerta':
         this.tipos = ['Frutas', 'Verduras'];

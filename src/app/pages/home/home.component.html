@@ -23,6 +23,14 @@
         </div>
     </div>
     <div class='vision' *ngFor="let visionText of getTextosBySection('Vision')">
+      
+        <mat-card-content>
+          <div class="contador-container">
+            
+            <p class="contador-text"><mat-icon class="visitas-icon">visibility</mat-icon> Total de visitas: <span class="contador-value">{{ contadorVisitas }}</span></p>
+          </div>
+        </mat-card-content>
+      
       <h1>{{visionText.titulo}}</h1>
       <p>{{visionText.texto}}
       </p>
@@ -66,7 +74,7 @@
     </button>
   </mat-menu>
 </div>
-
+<app-comentarios></app-comentarios>
 
 
   

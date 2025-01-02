@@ -1,0 +1,144 @@
+/* Contenedor principal de los comentarios */
+.comentarios-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título de la sección de comentarios */
+  .comentarios-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Estilo del formulario de comentarios */
+  .comentario-form,
+  .respuesta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Textarea para comentarios y respuestas */
+  .comentario-textarea,
+  .respuesta-textarea {
+    width: 100%;
+    min-height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    resize: none;
+  }
+  
+  .comentario-textarea:focus,
+  .respuesta-textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Botón para enviar comentarios y respuestas */
+  .btn-enviar {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-enviar:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .btn-enviar:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+  
+  /* Lista de comentarios */
+  .comentarios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Estilo de cada comentario */
+  .comentario-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comentario-autor {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 5px;
+  }
+  
+  .comentario-contenido {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .comentario-fecha {
+    font-size: 0.85rem;
+    color: #888;
+    text-align: right;
+  }
+  
+  /* Lista de respuestas */
+  .respuesta-item {
+    margin-top: 15px;
+    padding: 10px;
+    border-left: 3px solid #007bff;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  .respuesta-autor {
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 5px;
+  }
+  
+  .respuesta-contenido {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .respuesta-fecha {
+    font-size: 0.8rem;
+    color: #aaa;
+    text-align: right;
+  }
+  
+  .btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .btn-eliminar:hover {
+    background-color: #b02a37;
+  }
+  

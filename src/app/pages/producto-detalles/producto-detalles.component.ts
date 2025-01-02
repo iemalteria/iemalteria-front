@@ -89,8 +89,8 @@ export class ProductoDetallesComponent implements OnInit {
   }
 
   onCategoriaChange(categoria: string) {
-    if (categoria === 'Mujer' || categoria === 'Hombre' || categoria === 'Niño') {
-      this.tiposDisponibles = ['Zapatos', 'Pantalon', 'Camisas', 'Otros'];
+    if (categoria === 'Mujer' || categoria === 'Hombre' || categoria === 'Niño' || categoria === "Niña") {
+      this.tiposDisponibles = ['Zapatos', 'Pantalon', 'Camisas', 'Varios'];
     } else if (categoria === 'Huerta') {
       this.tiposDisponibles = ['Frutas', 'Verduras'];
     } else if (categoria === 'Emprendimientos') {
